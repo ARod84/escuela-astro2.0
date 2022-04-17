@@ -5,7 +5,7 @@
 *-----------------------------------*
 *************************************/
 
-import '../style.css'
+import '../estilos/style.css'
 
 import * as THREE from 'three';
 import { TextureLoader } from 'three';
@@ -55,16 +55,16 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize( window.innerWidth * 0.75, window.innerHeight * 0.75);
 
-const light1 = new THREE.AmbientLight( 0xffffff, 0.5 ); // soft white light
+const light1 = new THREE.AmbientLight( 0xf0f0f0, 0.75 ); // soft white light
 scene.add( light1 );
 
-const light2 = new THREE.PointLight( 0xffffff, 0.5 );
+const light2 = new THREE.PointLight( 0xffffff, 0.5);
+light2.position.set(75,15,75);
 scene.add( light2 );
 
 //Luna
 const geometry = new THREE.SphereGeometry( 15, 64, 32 );
-const material = new THREE.MeshLambertMaterial( { 
-    color: 0xffffff});
+const material = new THREE.MeshStandardMaterial( { color: 0xffffff });
 const sphere = new THREE.Mesh( geometry, material );
 scene.add( sphere );
 

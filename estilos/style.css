@@ -60,7 +60,7 @@ table {
 
 /* ESTILOS GLOBALES */
 body {
-  background-color: #16213B;
+  background-color: #000000;
   font-size: 16px;
 }
 
@@ -90,7 +90,7 @@ p {
 #bg,
 #introMoon {
   margin: 50px;
-  background-color: #16213B;
+  background-color: #000000;
 }
 
 .msj {
