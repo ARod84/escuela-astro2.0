@@ -3,9 +3,6 @@ import '../css/style.css'
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-const btn = document.getElementById("malu");
-const wth = btn.offsetWidth;
-
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -15,55 +12,41 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize( window.innerWidth * 0.75, window.innerHeight * 0.75);
-camera.position.setZ(30);
-camera.position.setX(-3);
+renderer.setSize( window.innerWidth*0.75, window.innerHeight*0.75);
+camera.position.setZ(20);
+camera.position.setX(-10);
 
 // Texturas 
 const textureLoader = new THREE.TextureLoader();
-const moonTexture = textureLoader.load('../img/SpecularMap.png');
+const moonTexture = textureLoader.load('../img/moontex.jpg');
 
 // Luna
 
-const geometry = new THREE.SphereGeometry( 15, 64, 32 );
+const geometry = new THREE.SphereGeometry( 8, 64, 64 );
 const material = new THREE.MeshStandardMaterial( { color: 0xE1DFF0 } );
-material.metalness = 0.25;
-material.roughness = 0.1;
-material.normalMap = moonTexture;
+material.roughness = 1.1;
+material.map = moonTexture;
 
 const sphere = new THREE.Mesh( geometry, material );
 scene.add( sphere );
 
 // Lights
 
-const pointLight = new THREE.PointLight(0xffffff, 0.1);
-pointLight.position.set(5, 5, 1);
-scene.add(pointLight);
+const light1 = new THREE.AmbientLight( 0xf0f0f0, 0.75 ); // soft white light
+scene.add( light1 );
 
-const pointLight2 = new THREE.PointLight(0xffffff, 2);
-pointLight2.position.x = 2
-pointLight2.position.y = 3
-pointLight2.position.z = 4
-pointLight2.intensity = 1;
-scene.add(pointLight2);
-
-const ambientLight = new THREE.AmbientLight(0xffffff);
-scene.add(pointLight, ambientLight);
-
-const lightHelper = new THREE.PointLightHelper(pointLight)
-scene.add(lightHelper)
+const light2 = new THREE.PointLight( 0xffffff, 0.5);
+light2.position.set(75,15,75);
+scene.add( light2 );
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
 function animate() {
   requestAnimationFrame(animate);
 
-  sphere.rotation.x += 0.01;
   sphere.rotation.y += 0.005;
-  sphere.rotation.z += 0.01;
 
-
-  // controls.update();
+  controls.update();
 
   renderer.render(scene, camera);
 }
