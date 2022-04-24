@@ -61,6 +61,7 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1;
   font-size: 16px;
+  overflow: hidden;
 }
 
 ol, ul {
@@ -117,6 +118,10 @@ p {
   background-color: #000000;
 }
 
+#bg {
+  position: relative;
+}
+
 .msj {
   margin: 2rem auto;
   max-width: 50%;
@@ -155,25 +160,35 @@ p {
 }
 
 .slide {
-  padding: 100px 50px 100px 50px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  min-height: 80vh;
 }
 
 .slide h1 {
     font-size: $title;
+    margin-bottom: 2rem;
 }
 
 .welcome {
     text-align: center;
     max-width: 75%;
     line-height: 1.55em;
+    margin: 2rem auto;
     font-weight: $normal;
     font-size: $par1;
-    margin-top: 5vh;
+    top: 50%;
+}
+
+.infoText {
+  top: 15vh;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #lvl2,
@@ -206,6 +221,11 @@ p {
   color: #ffffff;
   font-size: .85rem;
   font-family: 'Press Start 2P', sans-serif;
+  margin-bottom: 2rem;
+}
+
+.introForm [type="submit"] {
+  margin-bottom: 2rem;
 }
 
 .introForm label {
@@ -219,16 +239,10 @@ p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
 .btnClassy {
@@ -277,11 +291,8 @@ p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-around;
+  align-items: center;
   padding: 1.75rem;
 }
 
@@ -289,16 +300,9 @@ p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .control label {

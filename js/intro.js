@@ -5,7 +5,7 @@
 *-----------------------------------*
 *************************************/
 
-import '../estilos/style.css'
+import '../css/style.css'
 
 import * as THREE from 'three';
 import { TextureLoader } from 'three';
@@ -53,7 +53,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize( window.innerWidth * 0.75, window.innerHeight * 0.75);
+renderer.setSize( window.innerWidth, window.innerHeight);
 
 const light1 = new THREE.AmbientLight( 0xf0f0f0, 0.75 ); // soft white light
 scene.add( light1 );
@@ -62,20 +62,26 @@ const light2 = new THREE.PointLight( 0xffffff, 0.5);
 light2.position.set(75,15,75);
 scene.add( light2 );
 
-//Luna
-const geometry = new THREE.SphereGeometry( 15, 64, 32 );
-const material = new THREE.MeshStandardMaterial( { color: 0xffffff });
-const sphere = new THREE.Mesh( geometry, material );
-scene.add( sphere );
-
 camera.position.z = 30;
 camera.position.x = 0;
 
+function addStar() {
+  const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+  const star = new THREE.Mesh(geometry, material);
+
+  const [x, y, z] = Array(3)
+    .fill()
+    .map(() => THREE.MathUtils.randFloatSpread(100));
+
+  star.position.set(x, y, z);
+  scene.add(star);
+}
+
+Array(200).fill().forEach(addStar);
+
 function animate() {
     requestAnimationFrame( animate );
-
-    sphere.rotation.x += 0.01;
-    sphere.rotation.y += 0.01;
 
     renderer.render( scene, camera);
 };
